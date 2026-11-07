@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-"""A more advanced Mapper, using Python iterators and generators."""
 import sys
 import string
 from nltk import ngrams
@@ -9,7 +8,7 @@ n = sys.argv[1] #size of the ngram is taken from positional argument passed when
 
 def read_input(file):
   for line in file:
-    yield ngrams(line, n) #for each line we yield all ngrams
+    yield ngrams(line.split(), n) #for each line we yield all ngrams
 
 def main(separator='\t'):
   data = read_input(sys.stdin)
