@@ -3,7 +3,8 @@ PROJECT="$HOME/Documents/hadoop-project"
 
 cd $HADOOP
 
-#Running task for ngrams of size GSIZE
+#The size of ngrams on which we run the task is passed as the 1st positional argument
+#The output directory is specified as the 2nd positional argument.
 
 bin/hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar \
 -D mapreduce.job.running.map.tasks=2 \
