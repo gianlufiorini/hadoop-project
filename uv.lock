@@ -44,10 +44,14 @@ version = "0.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "nltk" },
+    { name = "regex" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "nltk", specifier = ">=3.10.4" }]
+requires-dist = [
+    { name = "nltk", specifier = ">=3.10.4" },
+    { name = "regex", specifier = ">=2026.11.7" },
+]
 
 [[package]]
 name = "joblib"
