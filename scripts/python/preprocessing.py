@@ -12,7 +12,7 @@ with open(file_path, 'r') as file:
 
 # we will reformat the text so that sentences are separated by a "newline"
 file_nopun = file_content.lower()
-file_nopun = file_nopun.replace(r"\t+", "")
+file_nopun = regex.sub(r"\t+", "", file_nopun)
 file_nopun = regex.sub(r"\n", " ", file_nopun)
 file_nopun = regex.sub(pattern, "\n", file_nopun) #we replace the period '.' separately so as not to break up website links
 file_nopun = regex.sub(r"\?\!\t", "\n", file_nopun)
