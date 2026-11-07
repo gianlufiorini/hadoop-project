@@ -3,7 +3,7 @@ import sys
 import string
 from nltk import ngrams
 
-n = sys.argv[1] #size of the ngram is taken from positional argument passed when
+n = int(sys.argv[1]) #size of the ngram is taken from positional argument passed when
                 #calling the script
 
 def read_input(file):
@@ -13,9 +13,9 @@ def read_input(file):
 def main(separator='\t'):
   data = read_input(sys.stdin)
 
-  for ngrams in data:
-      for ngram in ngrams:
-         print(f"{ngram}{separator}1") #We report each ngram to pass it to reduce tasks
+  for grams in data:
+      for gram in grams:
+         print(f"{' '.join(gram)}{separator}1") #We report each ngram to pass it to reduce tasks
 
 if __name__ == "__main__":
   main()

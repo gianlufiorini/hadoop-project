@@ -9,10 +9,10 @@ def read_mapper_output(file, separator='\t'):
 
 def main(separator='\t'):
   data = read_mapper_output(sys.stdin, separator=separator)
-  for current_ngram, group in groupby(data, itemgetter(0)):
+  for current_gram, group in groupby(data, itemgetter(0)):
     try:
-      total_count = sum(int(count) for current_ngram, count in group)
-      print(current_ngram, separator, total_count)
+      total_count = sum(int(count) for current_gram, count in group)
+      print(current_gram, separator, total_count)
     except ValueError:
       pass
 
