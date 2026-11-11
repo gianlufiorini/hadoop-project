@@ -12,7 +12,7 @@ def main(separator='\t'):
   for current_length, group in groupby(data, itemgetter(0)):
     try:
       total_count = sum(int(count) for current_length, count in group)
-      print(current_length, separator, total_count)
+      print(f"{current_length}{separator}{total_count}")
     except ValueError:
       pass
 
