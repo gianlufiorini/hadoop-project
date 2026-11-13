@@ -15,8 +15,13 @@ cd $HADOOP
 #Checking if data folder already exists
 bin/hadoop fs -test -d data || bin/hadoop fs -mkdir data
 
-bin/hadoop fs -test -e "data/$1.txt" || bin/hadoop fs -put "$PROJECT/data/$1.txt" data
-bin/hadoop fs -test -e "data/${1}_clean.txt" || bin/hadoop fs -put "$PROJECT/data/${1}_clean.txt" data
+#We check if the files exist and remove them if they do
+bin/hadoop fs -test -e "data/$1.txt" && bin/hadoop fs -rmr  bin/hadoop "data/$1.txt"
+bin/hadoop fs -test -e "data/${1}_clean.txt" && bin/hadoop fs -rmr  bin/hadoop "data/${1}_clean.txt"
+
+#We put new files in the system
+bin/hadoop fs -put "$PROJECT/data/$1.txt" data
+bin/hadoop fs -put "$PROJECT/data/${1}_clean.txt" data
 
 #listing files in data folder in HDFS
 bin/hadoop fs -ls data
