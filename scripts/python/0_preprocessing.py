@@ -1,10 +1,11 @@
 #We load the dataset, remove all punctuation, and save it to a new file
 import string
+import sys
 import regex
 
-file_path = 'data/ldv.txt'
-out_path = 'data/ldv_clean.txt'
-pattern = r'(?<=[a-zA-Z0-9]{2})\.(?=\s)'
+file = sys.argv[1]
+file_path = f'data/{file}.txt'
+out_path = f'data/{file}_clean.txt'
 
 with open(file_path, 'r') as file:
     lines = file.readlines()
@@ -14,7 +15,12 @@ with open(file_path, 'r') as file:
 file_nopun = file_content.lower()
 file_nopun = regex.sub(r"\t+", "", file_nopun)
 file_nopun = regex.sub(r"\n", " ", file_nopun)
-file_nopun = regex.sub(pattern, "\n", file_nopun) #we replace the period '.' separately so as not to break up website links
+file_nopun = regex.sub(r"mr\.", "mr ", file_nopun)
+file_nopun = regex.sub(r"mrs\.", "mrs ", file_nopun)
+file_nopun = regex.sub(r"ms\.", "ms ", file_nopun)
+file_nopun = regex.sub(r"mss\.", "mss ", file_nopun)
+file_nopun = regex.sub(r"’s", "", file_nopun)
+file_nopun = regex.sub( r"(?<=[a-zA-Z0-9]{2})\.(?=\s)", "\n", file_nopun) #we replace the period '.' separately so as not to break up website links
 file_nopun = regex.sub(r"\?\!\t", "\n", file_nopun)
 file_nopun = regex.sub(r'\p{P}', " ", file_nopun)
 file_nopun = regex.sub(r'^[ \t]+|[ \t]+$', '', file_nopun, flags=regex.MULTILINE) #trimming white spaces

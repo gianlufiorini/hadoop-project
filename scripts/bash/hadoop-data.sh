@@ -1,6 +1,14 @@
 HADOOP="$HOME/simplehadoop"
 PROJECT="$HOME/Documents/hadoop-project"
 
+#Cleaning data
+cd $PROJECT
+
+#The name of the file to process is provided as the first positioinal argument, without the extension.
+#The file to process must be placed in the /data directory before running the script
+python3 scripts/python/0_ preporcessing.py ldv
+
+
 cd $HADOOP
 
 #Putting data into hdfs
