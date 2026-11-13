@@ -57,7 +57,7 @@ file_nopun = regex.sub(r"(?<=\p{L}|\p{N})['’]d", " would", file_nopun)
 
 #separating sentences with newline characters
 file_nopun = regex.sub( r"(?<=[a-zA-Z0-9]{2})\.(?=\s)", "\n", file_nopun) #we replace the period '.' separately so as not to break up website links
-file_nopun = regex.sub(r"\?\!\t", "\n", file_nopun)
+file_nopun = regex.sub(r"[\?\!\t]", "\n", file_nopun)
 
 
 file_nopun = regex.sub(r'\p{P}', " ", file_nopun) #Removing remaining punctuation
