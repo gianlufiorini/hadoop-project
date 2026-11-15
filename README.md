@@ -1,7 +1,6 @@
 # Leonardo Da Vinci — Text analysis with MapReduce
 
-ENSAI — Distributed Systems project (Project 1: Text analysis)
-Authors: Gianluca Fiorini, Aude Guerand
+ENSAI — Authors: Authors: [Gianluca Fiorini](https://github.com/gianlufiorini), [Aude Guerand](https://github.com/audeGrd)
 
 We analyse [*The Notebooks of Leonardo Da Vinci*](https://www.gutenberg.org/ebooks/5000)
 (Project Gutenberg #5000) with MapReduce jobs written in Python and run with
