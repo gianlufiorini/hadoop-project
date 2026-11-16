@@ -1,6 +1,3 @@
-HADOOP="$HOME/simplehadoop"
-PROJECT="$HOME/Documents/hadoop-project"
-
 cd $HADOOP
 
 #The output directory is specified as the 1st positional argument.

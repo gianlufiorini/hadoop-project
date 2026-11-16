@@ -1,6 +1,3 @@
-HADOOP="$HOME/simplehadoop"
-PROJECT="$HOME/Documents/hadoop-project"
-
 cd $HADOOP
 
 #The minimum number of letters to consider is specified as the 1st positional argument.

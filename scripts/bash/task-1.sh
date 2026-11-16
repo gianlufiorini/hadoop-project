@@ -1,6 +1,3 @@
-HADOOP="$HOME/simplehadoop"
-PROJECT="$HOME/Documents/hadoop-project"
-
 cd $HADOOP
 
 #The size of ngrams on which we run the task is passed as the 1st positional argument
