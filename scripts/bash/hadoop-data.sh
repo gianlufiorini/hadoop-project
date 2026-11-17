@@ -1,12 +1,16 @@
+# Cleans a text file and uploads the raw and cleaned versions to HDFS.
+# Argument: file name without extension (e.g. ldv for data/ldv.txt).
+# Requires the HADOOP and PROJECT variables (defined in run-tasks.sh).
+
 #Cleaning data
 cd $PROJECT
 
-#The name of the file to process is provided as the first positioinal argument, without the extension.
+#The name of the file to process is provided as the first positional argument, without the extension.
 #The file to process must be placed in the /data directory before running the script
 python3 scripts/python/0_preprocessing.py $1
 
 
-cd $HADOOP
+cd $HADOOP #HDFS commands are run from the Hadoop folder
 
 #Putting data into hdfs
 #Checking if data folder already exists
