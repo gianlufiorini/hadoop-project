@@ -1,3 +1,7 @@
+# Task 3 - mapper: emits "<word>\t1" for every word whose length is strictly
+# between min and max. Whole words are emitted (not letters) so that the
+# combiner can merge identical words before the shuffle.
+
 #!/usr/bin/env python3
 import sys
 
