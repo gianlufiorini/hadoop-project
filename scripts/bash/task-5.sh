@@ -5,7 +5,7 @@
 
 cd $HADOOP
 
-#The word for which we want to return the expected following word is passed as the 1st positional argument.
+#The word to look for in the sentences is passed as the 1st positional argument.
 #The output directory is specified as the 2nd positional argument.
 
 bin/hadoop jar contrib/streaming/hadoop-streaming-1.2.1.jar \
