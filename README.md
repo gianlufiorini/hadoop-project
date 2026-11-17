@@ -15,16 +15,17 @@ We analyse [*The Notebooks of Leonardo Da Vinci*](https://www.gutenberg.org/eboo
 ## Requirements
 
 - **Hadoop 1.2.1** installed in `~/simplehadoop`.
-- This repository cloned in `~/Documents/hadoop-project` (the scripts use these
-  two paths).
+- This repository cloned in `~/Documents/hadoop-project`. These two paths are
+  defined at the top of `run-tasks.sh` (variables `HADOOP` and `PROJECT`) and
+  can be changed there.
 - **Python 3.12 or newer**.
 - The Python packages **`nltk`** (n-grams, tasks 1 and 4) and **`regex`**
   (preprocessing). They must be installed for the system `python3`, the one
   Hadoop calls, for example with `pip3 install nltk regex`: installing them
   only in a virtual environment is not enough.
 
-The script `run-all.sh` runs the whole pipeline in one go; each step can also
-be run on its own with the scripts described below.
+The script `run-tasks.sh` runs the whole pipeline in one go (see
+[What run-tasks.sh runs](#what-run-taskssh-runs)).
 
 ## Pipeline
 
@@ -73,11 +74,14 @@ data/ldv.txt ──0_preprocessing.py──► data/ldv_clean.txt
 
 ### Bash scripts — `scripts/bash/`
 
-Arguments are positional, in the order given.
+Arguments are positional, in the order given. All scripts except
+`run-tasks.sh` use the `HADOOP` and `PROJECT` variables defined in
+`run-tasks.sh`: to run one of them on its own, these two variables must be
+defined first.
 
 | Script | Arguments | Role |
 |---|---|---|
-| `run-all.sh` | — | Runs the whole project in one go. |
+| `run-tasks.sh` | — | Defines the `HADOOP` and `PROJECT` paths, then runs every step below in order. |
 | `hadoop-start.sh` | — | (Re)starts the Hadoop daemons and checks them with `jps`. |
 | `hadoop-data.sh` | file name without extension (`ldv`) | Runs the preprocessing on `data/<name>.txt`, then uploads the raw and cleaned files to the HDFS `data` folder (replacing old versions). |
 | `task-1.sh` | n-gram size (1 to 5), output folder | Counts n-grams (1 = single words). |
@@ -105,6 +109,25 @@ These scripts are called by the bash scripts, which pass their arguments.
 | `reduce_4.py` | — | Sums the counts of each following word and sorts them by decreasing frequency. |
 | `map_5.py` | word | Emits `sentence \t 1` each time the given word appears in a sentence. |
 | `reduce_5.py` | — | Sums the counts per sentence and sorts the sentences by number of occurrences of the word. |
+
+## What run-tasks.sh runs
+
+`run-tasks.sh` starts Hadoop, cleans `data/ldv.txt` and uploads it to HDFS,
+then runs the jobs below. Each result is written to the HDFS folder shown.
+
+| Job | Arguments | Output folder |
+|---|---|---|
+| Task 1 — 2-grams | `2` | `out-1` |
+| Task 1 — 3-grams | `3` | `out-2` |
+| Task 1 — 4-grams | `4` | `out-3` |
+| Task 1 — 5-grams | `5` | `out-4` |
+| Task 2 — WordLengthCount | — | `out-5` |
+| Task 3 — top letters | `4 10 0.02` (words of 5 to 9 letters, top 2%) | `out-6` |
+| Task 4 — following word | `leonardo` | `out-7` |
+| Task 5 — sentences | `leonardo` | `out-8` |
+
+The example word `leonardo` can be replaced by any word in `run-tasks.sh`.
+Single-word frequencies (task 1 with n = 1) are not run by default.
 
 ## Results and monitoring
 
