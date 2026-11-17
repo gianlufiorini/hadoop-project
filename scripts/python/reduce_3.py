@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
+
 # Task 3 - reducer: each word adds its count to each of its letters (a-z, A-Z),
 # then the letters are sorted and the top fraction of the 26 letters is kept
 # (0.02 = top 2%, rounded up, i.e. 1 letter).
 
-#!/usr/bin/env python3
 from itertools import groupby
 from operator import itemgetter
 from math import ceil
