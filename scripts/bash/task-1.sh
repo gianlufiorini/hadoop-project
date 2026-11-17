@@ -1,3 +1,8 @@
+# Task 1: frequency of n-grams (compositions of n consecutive words).
+# Usage: task-1.sh <n> <output folder>
+# The result is written to the HDFS folder out-<output folder>.
+# Requires the HADOOP and PROJECT variables (defined in run-tasks.sh).
+
 cd $HADOOP
 
 #The size of ngrams on which we run the task is passed as the 1st positional argument

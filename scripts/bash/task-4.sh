@@ -1,3 +1,8 @@
+# Task 4: words that follow a given word, from the most to the least frequent.
+# Usage: task-4.sh <word> <output folder>
+# The result is written to the HDFS folder out-<output folder>.
+# Requires the HADOOP and PROJECT variables (defined in run-tasks.sh).
+
 cd $HADOOP
 
 #The word for which we want to return the expected following word is passed as the 1st positional argument.

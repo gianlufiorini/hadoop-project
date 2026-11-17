@@ -1,3 +1,8 @@
+# Task 2: WordLengthCount, number of words of each length.
+# Usage: task-2.sh <output folder>
+# The result is written to the HDFS folder out-<output folder>.
+# Requires the HADOOP and PROJECT variables (defined in run-tasks.sh).
+
 cd $HADOOP
 
 #The output directory is specified as the 1st positional argument.

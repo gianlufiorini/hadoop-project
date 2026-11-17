@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+
+# Generic sum reducer: adds up the counts of each key.
+# Reducer of task 2 (key = word length) and combiner of tasks 2 to 5.
+
 from itertools import groupby
 from operator import itemgetter
 import sys

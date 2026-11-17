@@ -1,3 +1,8 @@
+# Preprocessing (run locally, before Hadoop).
+# Cleans data/<name>.txt and writes data/<name>_clean.txt with one sentence per
+# line, in lowercase and without punctuation.
+# Argument: file name without extension (e.g. ldv).
+
 #We load the dataset, remove all punctuation, and save it to a new file
 import string
 import sys
@@ -21,7 +26,8 @@ file_nopun = regex.sub(r"\n", " ", file_nopun) #Replace newlines with spaces
 file_nopun = regex.sub(r"_", "", file_nopun)
 
 #Reformatting abbreviations
-
+#The period of these abbreviations is replaced by <DOT> so that it is not
+#taken for the end of a sentence below.
 abbrevs = [
     # titles and names
     "mr", "mrs", "ms", "dr", "prof", "rev", "st", "sta", "sto",
@@ -47,9 +53,13 @@ abbrevs = [
 ]
 
 file_nopun = regex.sub(r"\b(" + "|".join(abbrevs) + r")\.", r"\1<DOT> ", file_nopun)
+#"no." and "cap." only when followed by a number (arabic or roman): "no. 12"
 file_nopun = regex.sub(r"\b(no|cap)\.\s*(?=\d|[ivxlc]+\b)", r"\1<DOT> ", file_nopun)
+#"in." (inches) only after a number: "12 in."
 file_nopun = regex.sub(r'(?<=\d)\s?in\.', "in<DOT> ", file_nopun)
 file_nopun = regex.sub(r"arch\. stor<DOT>", "arch<DOT> stor<DOT> ", file_nopun)
+
+#Possessive 's removed, contractions expanded
 file_nopun = regex.sub(r"(?<=\p{L}|\p{N})['’]s", "", file_nopun)
 file_nopun = regex.sub(r"(?<=\p{L}|\p{N})n't", " not", file_nopun)
 file_nopun = regex.sub(r"(?<=\p{L}|\p{N})['’]ve", " have", file_nopun)
