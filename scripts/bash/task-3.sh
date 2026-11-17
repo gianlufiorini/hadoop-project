@@ -1,3 +1,8 @@
+# Task 3: most used letters in words whose length is strictly between min and max.
+# Usage: task-3.sh <min> <max> <fraction> <output folder>   (e.g. 4 10 0.02 for the top 2%)
+# The result is written to the HDFS folder out-<output folder>.
+# Requires the HADOOP and PROJECT variables (defined in run-tasks.sh).
+
 cd $HADOOP
 
 #The minimum number of letters to consider is specified as the 1st positional argument.
