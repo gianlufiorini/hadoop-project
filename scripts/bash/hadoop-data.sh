@@ -1,6 +1,3 @@
-HADOOP="$HOME/simplehadoop"
-PROJECT="$HOME/Documents/hadoop-project"
-
 #Cleaning data
 cd $PROJECT
 

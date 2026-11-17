@@ -1,6 +1,3 @@
-HADOOP="$HOME/simplehadoop"
-PROJECT="$HOME/Documents/hadoop-project"
-
 cd $HADOOP
 
 #The word for which we want to return the expected following word is passed as the 1st positional argument.
